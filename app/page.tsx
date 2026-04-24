@@ -97,7 +97,7 @@ export default function Home() {
     <div
       className={`min-h-screen bg-[#16102e] text-[#f5f0e8] ${cormorant.className}`}
     >
-      <div className="mx-auto flex w-full max-w-5xl flex-col px-6 py-12 sm:px-10 lg:py-20">
+      <div className="mx-auto flex w-full max-w-[1100px] flex-col px-6 py-12 sm:px-10 lg:py-20">
         <header className="mb-10 border-b border-[#b8922a]/25 pb-8">
           <p
             className={`${cinzel.className} mb-4 text-[0.65rem] uppercase tracking-[0.35em] text-[#b8922a]`}
@@ -119,7 +119,7 @@ export default function Home() {
         <main className="space-y-8">
           <form
             onSubmit={onSearch}
-            className="rounded-2xl border border-[#b8922a]/30 bg-[#0a0818]/60 p-5 shadow-[0_0_60px_rgba(184,146,42,0.08)] sm:p-7"
+            className="mx-auto w-full max-w-4xl rounded-2xl border border-[#b8922a]/30 bg-[#0a0818]/60 p-5 shadow-[0_0_60px_rgba(184,146,42,0.08)] sm:p-7"
           >
             <label
               htmlFor="themeQuery"
@@ -132,7 +132,7 @@ export default function Home() {
                 id="themeQuery"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="e.g. vanity, beauty, hypocrisy, desire"
+                placeholder="e.g. vanity, beauty, hypocrisy, decadence"
                 className="w-full rounded-xl border border-[#b8922a]/40 bg-[#16102e] px-4 py-3 text-lg text-[#f5f0e8] outline-none placeholder:text-[#f5f0e8]/45 focus:border-[#d4ac5a] focus:ring-2 focus:ring-[#d4ac5a]/40"
               />
               <button
@@ -153,7 +153,7 @@ export default function Home() {
 
           {result ? (
             <section className="space-y-6">
-              <div className="rounded-2xl border border-[#b8922a]/35 bg-[#0e0b1c]/70 p-6">
+              <div className="mx-auto w-full max-w-4xl rounded-2xl border border-[#b8922a]/35 bg-[#0e0b1c]/70 p-6">
                 <p
                   className={`${cinzel.className} mb-2 text-xs uppercase tracking-[0.25em] text-[#b8922a]`}
                 >
@@ -164,7 +164,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <div className="mx-auto w-full max-w-4xl space-y-4">
                 <p
                   className={`${cinzel.className} text-xs uppercase tracking-[0.25em] text-[#b8922a]`}
                 >
