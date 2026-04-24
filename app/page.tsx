@@ -143,7 +143,7 @@ export default function Home() {
       className={`min-h-screen bg-[#16102e] text-[#f5f0e8] ${cormorant.className}`}
     >
       <div className="mx-auto flex w-full max-w-[1100px] flex-col px-6 py-12 sm:px-10 lg:py-20">
-        <header className="mb-10 border-b border-[#b8922a]/25 pb-8">
+        <header className="mx-auto mb-10 w-full max-w-4xl border-b border-[#b8922a]/25 pb-8">
           <p
             className={`${cinzel.className} mb-4 text-[0.65rem] uppercase tracking-[0.35em] text-[#b8922a]`}
           >
