@@ -156,17 +156,24 @@ export default function Home() {
           <p
             className={`${cinzel.className} mb-4 text-[0.65rem] uppercase tracking-[0.35em] text-[#b8922a]`}
           >
-            Thematic Search
+            Oscar Wilde Thematic Search
           </p>
           <h1
             className={`${cinzel.className} text-4xl text-[#f5f0e8] sm:text-6xl`}
           >
-            Oscar <span className="italic text-[#d4ac5a]">Wilde</span>
+            <span className="italic text-[#d4ac5a]">Ask</span> Oscar
           </h1>
           <p
             className={`${imFell.className} mt-4 max-w-2xl text-lg italic text-[#d4ac5a]`}
           >
-            Search the works by theme, feeling, or question.
+            Search{" "}
+            <a
+              href="/about"
+              className="text-[#d4ac5a] decoration-[#d4ac5a]/70 underline-offset-4 transition hover:text-[#f5f0e8] hover:decoration-[#f5f0e8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ac5a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#16102e]"
+            >
+              the works
+            </a>{" "}
+            by theme, feeling, or question.
           </p>
         </header>
 
