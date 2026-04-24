@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
     messages: [
       {
         role: "user",
-        content: `Based only on these passages from Oscar Wilde's novels, write a 2-3 sentence synthesis of what Wilde says about: "${query}"\n\nPassages:\n${passageContext}\n\nBe concise and specific. Reference the novels by name.`,
+        content: `Based only on these passages from Oscar Wilde's novels, write a 2-3 sentence synthesis of what Wilde says about: "${query}"\n\nPassages:\n${passageContext}\n\nBe concise and specific. Reference the novels by name. Do not say "Based on these passages" in your response`,
       },
     ],
   });

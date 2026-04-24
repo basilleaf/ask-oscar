@@ -36,11 +36,35 @@ type SearchResponse = {
   passages: SearchPassage[];
 };
 
+const SUGGESTED_QUERIES = [
+  "hypocrisy",
+  "vanity",
+  "beauty",
+  "individualism",
+  "first impressions",
+  "decadence & hedonism",
+  "social obligation",
+  "moral and ethical dilemmas",
+  "social class and class mobility",
+];
+
 export default function Home() {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<SearchResponse | null>(null);
+
+  const resetSearchState = () => {
+    setResult(null);
+    setError(null);
+    const params = new URLSearchParams(window.location.search);
+    params.delete("slug");
+    const paramsString = params.toString();
+    const nextUrl = paramsString
+      ? `${window.location.pathname}?${paramsString}`
+      : window.location.pathname;
+    window.history.replaceState({}, "", nextUrl);
+  };
 
   const runSearch = async (rawQuery: string) => {
     const trimmedQuery = rawQuery.trim();
@@ -93,6 +117,27 @@ export default function Home() {
     await runSearch(trimmedQuery);
   };
 
+  const onSuggestionClick = (suggestion: string) => {
+    setQuery(suggestion);
+    const params = new URLSearchParams(window.location.search);
+    params.set("slug", suggestion);
+    const nextUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", nextUrl);
+    void runSearch(suggestion);
+  };
+
+  const onQueryChange = (nextQuery: string) => {
+    setQuery(nextQuery);
+    if (!nextQuery.trim()) {
+      resetSearchState();
+    }
+  };
+
+  const onClearQuery = () => {
+    setQuery("");
+    resetSearchState();
+  };
+
   return (
     <div
       className={`min-h-screen bg-[#16102e] text-[#f5f0e8] ${cormorant.className}`}
@@ -128,13 +173,25 @@ export default function Home() {
               Your query
             </label>
             <div className="flex flex-col gap-3 sm:flex-row">
-              <input
-                id="themeQuery"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="e.g. vanity, beauty, hypocrisy, decadence"
-                className="w-full rounded-xl border border-[#b8922a]/40 bg-[#16102e] px-4 py-3 text-lg text-[#f5f0e8] outline-none placeholder:text-[#f5f0e8]/45 focus:border-[#d4ac5a] focus:ring-2 focus:ring-[#d4ac5a]/40"
-              />
+              <div className="relative w-full">
+                <input
+                  id="themeQuery"
+                  value={query}
+                  onChange={(event) => onQueryChange(event.target.value)}
+                  placeholder="e.g. vanity, beauty, hypocrisy, decadence"
+                  className="w-full rounded-xl border border-[#b8922a]/40 bg-[#16102e] px-4 py-3 pr-10 text-lg text-[#f5f0e8] outline-none placeholder:text-[#f5f0e8]/45 focus:border-[#d4ac5a] focus:ring-2 focus:ring-[#d4ac5a]/40"
+                />
+                {query ? (
+                  <button
+                    type="button"
+                    onClick={onClearQuery}
+                    aria-label="Clear search"
+                    className="absolute inset-y-0 right-2 flex w-12 items-center justify-center p-2 text-3xl leading-none font-semibold text-[#f5f0e8]/75 transition hover:text-[#f5f0e8] sm:right-3"
+                  >
+                    <span className="translate-y-[-3px]">×</span>
+                  </button>
+                ) : null}
+              </div>
               <button
                 type="submit"
                 disabled={loading || !query.trim()}
@@ -142,6 +199,32 @@ export default function Home() {
               >
                 {loading ? "Searching..." : "Search"}
               </button>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2 sm:hidden">
+              {SUGGESTED_QUERIES.slice(0, 3).map((suggestion) => (
+                <button
+                  key={suggestion}
+                  type="button"
+                  onClick={() => onSuggestionClick(suggestion)}
+                  disabled={loading}
+                  className={`${imFell.className} rounded-sm border border-[#b8922a]/35 bg-[#16102e]/75 px-4 py-2 text-xl italic text-[#e5dccb]/85 transition hover:border-[#d4ac5a]/80 hover:text-[#f5f0e8] disabled:cursor-not-allowed disabled:opacity-60`}
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
+            <div className="mt-4 hidden flex-wrap gap-2 sm:flex">
+              {SUGGESTED_QUERIES.map((suggestion) => (
+                <button
+                  key={suggestion}
+                  type="button"
+                  onClick={() => onSuggestionClick(suggestion)}
+                  disabled={loading}
+                  className={`${imFell.className} rounded-sm border border-[#b8922a]/35 bg-[#16102e]/75 px-4 py-2 text-xl italic text-[#e5dccb]/85 transition hover:border-[#d4ac5a]/80 hover:text-[#f5f0e8] disabled:cursor-not-allowed disabled:opacity-60`}
+                >
+                  {suggestion}
+                </button>
+              ))}
             </div>
           </form>
 
