@@ -6,6 +6,7 @@ import {
   Cormorant_Garamond,
   IM_Fell_English,
 } from "next/font/google";
+import Link from "next/link";
 
 const cinzel = Cinzel_Decorative({
   subsets: ["latin"],
@@ -142,7 +143,15 @@ export default function Home() {
     <div
       className={`min-h-screen bg-[#16102e] text-[#f5f0e8] ${cormorant.className}`}
     >
-      <div className="mx-auto flex w-full max-w-[1100px] flex-col px-6 py-12 sm:px-10 lg:py-20">
+      <div className="relative mx-auto flex w-full max-w-[1100px] flex-col px-6 py-12 sm:px-10 lg:py-20">
+        <div className="fixed right-[20px] top-[12px]">
+          <Link
+            href="/about"
+            className={`${cinzel.className} text-[0.65rem] uppercase tracking-[0.25em] text-[#d4ac5a] transition hover:text-[#f5f0e8]`}
+          >
+            About
+          </Link>
+        </div>
         <header className="mx-auto mb-10 w-full max-w-4xl border-b border-[#b8922a]/25 pb-8">
           <p
             className={`${cinzel.className} mb-4 text-[0.65rem] uppercase tracking-[0.35em] text-[#b8922a]`}
