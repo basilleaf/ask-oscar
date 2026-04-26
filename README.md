@@ -1,3 +1,20 @@
+Semantic search across a few Oscar Wilde works
+
+- RAG-powered search app that surfaces verbatim passages from all six Oscar Wilde books using natural language queries
+- Semantic search via pgvector (HNSW index) and Voyage AI embeddings stored in Neon PostgreSQL
+- AI-synthesized summaries grounded in retrieved passages via Anthropic Claude API
+- Custom data ingestion pipeline fetching, cleaning, and chunking ~6,500 paragraphs from Project Gutenberg plaintext files
+- Drizzle ORM for schema and queries; raw SQL for vector similarity search
+- Rate limiting with Upstash Redis to protect open endpoints
+- Built with Next.js App Router, TypeScript, Shadcn UI, and Tailwind CSS, deployed to Vercel
+
+https://ask-oscar.vercel.app/
+
+
+<img width="3412" height="2124" alt="image" src="https://github.com/user-attachments/assets/98e3c4aa-f3fe-40ba-8b4c-65b4953732b9" />
+
+----
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
